@@ -9,6 +9,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<FlashCard> deck = [
+    FlashCard(),
+    FlashCard(),
+    FlashCard(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: FlashCard());

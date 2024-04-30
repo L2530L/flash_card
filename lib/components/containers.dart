@@ -13,7 +13,7 @@ class Containers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.grey.shade800, borderRadius: BorderRadius.circular(24)),
+          color: Colors.grey.shade400, borderRadius: BorderRadius.circular(24)),
       margin: EdgeInsets.all(10),
       width: 400,
       height: 400,

@@ -22,7 +22,7 @@ class FlashCard extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 25,
-                color: Colors.white,
+                color: Colors.black,
               ),
             )),
 
@@ -33,7 +33,7 @@ class FlashCard extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 25,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ))));
   }

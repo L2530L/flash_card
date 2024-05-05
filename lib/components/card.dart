@@ -1,14 +1,16 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flash_card/components/containers.dart';
+import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 
 class FlashCard extends StatelessWidget {
   final String frontText;
   final String backText;
+  final FlipCardController controller;
 
-  const FlashCard({super.key, required this.frontText, required this.backText,});
+  const FlashCard({super.key, required this.frontText, required this.backText, required this.controller});
 
 //TEXT EDIT
 
@@ -16,7 +18,7 @@ class FlashCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: FlipCard(
-            
+            controller: controller,
             // FRONT
             front: Containers(
                 child: Column(

@@ -19,16 +19,16 @@ class _HomePageState extends State<HomePage> {
   int index = 0;
   bool isFront = true;
   var cardState = FlipCardState(true);
-  
-
-
-  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
+          title: Text(
+            "Flash Card",
+            textAlign: TextAlign.center,
+          ),
         ),
         backgroundColor: Colors.white,
         body: Column(
@@ -51,7 +51,8 @@ class _HomePageState extends State<HomePage> {
                         index += 1;
                       } else {
                         index += 1;
-                        widget.deck[index].controller.toggleCardWithoutAnimation();
+                        widget.deck[index].controller
+                            .toggleCardWithoutAnimation();
                       }
                     });
                   } else {

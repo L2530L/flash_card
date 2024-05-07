@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flash_card/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -34,7 +36,7 @@ class MainPage extends StatelessWidget {
 
     List<FlashCard> science = [
       FlashCard(
-        frontText: "Powerhouse of the cell",
+        frontText: "Powerhouse of the cell?",
         backText: "Mitochondria",
         controller: flipControl,
       ),
@@ -66,12 +68,8 @@ class MainPage extends StatelessWidget {
             child: InkWell(
               child: Text(
                 'Mathematics',
-                style: TextStyle(
-                  fontSize: 60,
-                  fontWeight: FontWeight.bold
-                ),
+                style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
               ),
-              
               onTap: () {
                 Navigator.push(
                   context,
@@ -86,32 +84,7 @@ class MainPage extends StatelessWidget {
           ),
         ),
 
-
         //Container
-        Container(
-          child: Material(
-            color: Colors.green,
-            child: InkWell(
-              child: Text(
-                'Science',
-                style: TextStyle(
-                  fontSize: 60,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(
-                      deck: science,
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        ),
       ],
     ));
   }

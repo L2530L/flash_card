@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:flash_card/components/grid.dart';
 import 'package:flash_card/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -66,12 +69,8 @@ class MainPage extends StatelessWidget {
             child: InkWell(
               child: Text(
                 'Mathematics',
-                style: TextStyle(
-                  fontSize: 60,
-                  fontWeight: FontWeight.bold
-                ),
+                style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
               ),
-              
               onTap: () {
                 Navigator.push(
                   context,
@@ -86,31 +85,12 @@ class MainPage extends StatelessWidget {
           ),
         ),
 
-
         //Container
-        Container(
-          child: Material(
-            color: Colors.green,
-            child: InkWell(
-              child: Text(
-                'Science',
-                style: TextStyle(
-                  fontSize: 60,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(
-                      deck: science,
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
+        Grid(decks: science, deck_name: 'Science'),
+
+        Grid(
+          deck_name: 'Computer Science',
+          decks: decks,
         ),
       ],
     ));

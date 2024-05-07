@@ -17,14 +17,14 @@ class MainPage extends StatelessWidget {
             child: InkWell(
               onTap: () {
                 Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => const HomePage()),
-  );
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
               },
             ),
           ),
         ),
-        
+
         //Container
         Container(
           color: Colors.black,

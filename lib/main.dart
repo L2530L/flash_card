@@ -1,6 +1,5 @@
 import 'package:flash_card/pages/card_select.dart';
 import 'package:flash_card/pages/home.dart';
-import 'package:flash_card/pages/card_select.dart';
 import 'package:flutter/material.dart';
 
 void main() {

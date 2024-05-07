@@ -35,12 +35,20 @@ class _HomePageState extends State<HomePage> {
       backText: "3",
       controller: flipControl,
     ),
+    FlashCard(
+      frontText: "3x3",
+      backText: "9",
+      controller: flipControl,
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(234, 0, 0, 0),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+        ),
+        backgroundColor: Colors.grey.shade700,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -49,6 +57,7 @@ class _HomePageState extends State<HomePage> {
               height: 10,
             ),
             ElevatedButton(
+                style: ButtonStyle(),
                 onPressed: () {
                   if (index < deck.length - 1) {
                     setState(() {

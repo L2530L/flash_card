@@ -24,13 +24,13 @@ class FlashCard extends StatelessWidget {
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(
+                Padding (
                   padding: const EdgeInsets.all(40),
                   child: Container(
                     margin: EdgeInsets.all(10),
                     child: Text(
                       'Question',
-                      style: TextStyle(
+                      style: TextStyle (
                         fontSize: 25, fontWeight: FontWeight.bold
                       ),
                     ),

@@ -1,3 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'dart:math';
+
+import 'package:flash_card/components/grid.dart';
 import 'package:flash_card/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -56,55 +61,32 @@ class MainPage extends StatelessWidget {
     ];
 
     return Scaffold(
-        body: GridView.count(
-      mainAxisSpacing: 20,
-      crossAxisCount: 1,
-      children: [
-        Container(
-          child: Material(
-            color: Colors.red,
-            child: InkWell(
+        appBar: AppBar(
+          title: Center(
               child: Text(
-                'Mathematics',
-                style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(
-                      deck: decks,
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
+            "FlashCard ni OLOPSC",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          )),
+          backgroundColor: Colors.grey.shade400,
+          elevation: 2,
         ),
-
-        //Container
-        Container(
-          child: Material(
-            color: Colors.green,
-            child: InkWell(
-              child: Text(
-                'Science',
-                style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(
-                      deck: science,
-                    ),
-                  ),
-                );
-              },
+        body: ListView(
+          children: [
+            SizedBox(
+              height: 20,
             ),
-          ),
-        ),
-      ],
-    ));
+            Grid(
+              deck_name: "Mathematics",
+              decks: decks,
+            ),
+            SizedBox(
+              height: 14,
+            ),
+            Grid(
+              deck_name: "Science",
+              decks: science,
+            ),
+          ],
+        ));
   }
 }

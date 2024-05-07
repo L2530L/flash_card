@@ -17,18 +17,18 @@ class Containers extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
           boxShadow: [
             BoxShadow(
-                color: Colors.grey.shade300,
+                color: Colors.grey.shade200,
                 offset: Offset(4.0, 4.0),
                 blurRadius: 15.0,
                 spreadRadius: 1.0),
             BoxShadow(
-                color: Colors.white,
+                color: Colors.grey.shade400,
                 offset: Offset(-4.0, -4.0),
                 blurRadius: 15.0,
                 spreadRadius: 1.0)
           ]),
       margin: EdgeInsets.all(10),
-      width: 400,
+      width: 250,
       height: 400,
       child: Center(child: child),
     );

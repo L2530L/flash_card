@@ -71,6 +71,7 @@ class MainPage extends StatelessWidget {
                   fontWeight: FontWeight.bold
                 ),
               ),
+              
               onTap: () {
                 Navigator.push(
                   context,
@@ -84,6 +85,7 @@ class MainPage extends StatelessWidget {
             ),
           ),
         ),
+
 
         //Container
         Container(

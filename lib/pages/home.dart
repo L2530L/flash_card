@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           backgroundColor: Colors.white,
         ),
-        backgroundColor: Colors.grey.shade700,
+        backgroundColor: Colors.white,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -39,7 +39,11 @@ class _HomePageState extends State<HomePage> {
               height: 10,
             ),
             ElevatedButton(
-                style: ButtonStyle(),
+                style: ButtonStyle(
+                  overlayColor: MaterialStatePropertyAll(Colors.white70),
+                  backgroundColor: MaterialStatePropertyAll(
+                      Color.fromARGB(153, 253, 253, 253)),
+                ),
                 onPressed: () {
                   if (index < widget.deck.length - 1) {
                     setState(() {
@@ -61,12 +65,12 @@ class _HomePageState extends State<HomePage> {
                     });
                   }
                 },
-                child: Text(
-                  "Next Card",
-                  style: TextStyle(
-                      color: Color.fromARGB(160, 0, 0, 0),
-                      fontWeight: FontWeight.bold),
-                ))
+                child: Text("Next Card",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    )))
           ],
         ));
   }

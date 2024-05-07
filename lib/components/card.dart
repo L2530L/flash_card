@@ -10,7 +10,11 @@ class FlashCard extends StatelessWidget {
   final String backText;
   final FlipCardController controller;
 
-  const FlashCard({super.key, required this.frontText, required this.backText, required this.controller});
+  const FlashCard(
+      {super.key,
+      required this.frontText,
+      required this.backText,
+      required this.controller});
 
 //TEXT EDIT
 
@@ -24,15 +28,14 @@ class FlashCard extends StatelessWidget {
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding (
+                Padding(
                   padding: const EdgeInsets.all(40),
                   child: Container(
                     margin: EdgeInsets.all(10),
                     child: Text(
                       'Question',
-                      style: TextStyle (
-                        fontSize: 25, fontWeight: FontWeight.bold
-                      ),
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),

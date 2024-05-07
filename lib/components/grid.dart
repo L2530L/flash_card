@@ -6,10 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class Grid extends StatelessWidget {
-  final List<FlashCard> decks;
+  final String name;
+  final List decks;
   final String deck_name;
 
-  const Grid({super.key, required this.decks, required this.deck_name});
+  const Grid({super.key, required this.decks, required this.deck_name, required this.name});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:ffi';
+
 import 'package:flash_card/components/grid.dart';
 import 'package:flash_card/pages/home.dart';
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -17,6 +20,10 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController frontController = TextEditingController();
+    TextEditingController backController = TextEditingController();
+    int dropdownValues;
+
     List<Map<String, dynamic>> decks = [
       {
         'name': 'Math',
@@ -70,38 +77,57 @@ class _MainPageState extends State<MainPage> {
       }
     ];
 
-    String? drop = decks[0]['name'];
+    List<String> dropValues =
+        decks.map((deckName) => deckName['name'].toString()).toList();
 
     void showBox() {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
           content: Column(
-            children: [TextField(), TextField()],
+            children: [
+              TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), label: Text('Front')),
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), label: Text('Back')),
+              )
+            ],
           ),
           actions: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                DropdownButton<String>(
-                  value: drop,
-                  items: [
-                    DropdownMenuItem(
-                      child: Text(decks[0]['name']),
-                      value: decks[0]['name'],
-                    ),
-                    DropdownMenuItem(
-                      child: Text(decks[1]['name']),
-                      value: decks[1]['name'],
-                    ),
-                  ],
-                  onChanged: (value) {
+                DropdownMenu<dynamic>(
+                  dropdownMenuEntries: dropValues
+                      .map<DropdownMenuEntry<String>>((String values) {
+                    return DropdownMenuEntry(value: values, label: values);
+                  }).toList(),
+                  onSelected: (index) {
                     setState(() {
-                      drop = value!;
+                      dropdownValues = index;
                     });
                   },
                 ),
-                ElevatedButton(onPressed: () {}, child: Icon(Icons.add)),
+
+                //Button to add card
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        
+                        decks[0]['deck'].add(FlashCard(
+                            frontText: frontController.text,
+                            backText: backController.text,
+                            controller: flipControl));
+                      });
+                      print(decks[0]['deck']);
+                    },
+                    child: Icon(Icons.add)),
               ],
             )
           ],
@@ -127,7 +153,9 @@ class _MainPageState extends State<MainPage> {
           Grid(
             deck_name: "Mathematics",
             name: decks[0]['name'],
-            decks: decks[0]['deck'],
+            builder: (context) => HomePage(
+              deck: decks[0]['deck'],
+            ),
           ),
           SizedBox(
             height: 14,
@@ -135,13 +163,16 @@ class _MainPageState extends State<MainPage> {
           Grid(
             deck_name: "Science",
             name: decks[1]['name'],
-            decks: decks[1]['deck'],
+            builder: (context) => HomePage(
+              deck: decks[1]['deck'],
+            ),
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        showBox();
-      }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: showBox,
+        child: Icon(Icons.add),
+      ),
     );
   }
 }

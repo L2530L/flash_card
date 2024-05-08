@@ -7,10 +7,10 @@ import 'package:flutter/widgets.dart';
 
 class Grid extends StatelessWidget {
   final String name;
-  final List decks;
+  final Widget Function(BuildContext) builder;
   final String deck_name;
 
-  const Grid({super.key, required this.decks, required this.deck_name, required this.name});
+  const Grid({super.key, required this.builder, required this.deck_name, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +33,8 @@ class Grid extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => HomePage(
-                  deck: decks,
-                ),
+                builder: builder,
+                
               ),
             );
           },
@@ -44,3 +43,5 @@ class Grid extends StatelessWidget {
     );
   }
 }
+
+

@@ -19,7 +19,8 @@ class _HomePageState extends State<HomePage> {
   int index = 0;
   bool isFront = true;
   var cardState = FlipCardState(true);
-
+  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

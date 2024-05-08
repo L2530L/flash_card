@@ -22,8 +22,8 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     TextEditingController frontController = TextEditingController();
     TextEditingController backController = TextEditingController();
-    int dropdownValues;
 
+    
     List<Map<String, dynamic>> decks = [
       {
         'name': 'Math',
@@ -76,9 +76,12 @@ class _MainPageState extends State<MainPage> {
         ],
       }
     ];
+    List deck1 = decks[0]['deck'];
 
     List<String> dropValues =
         decks.map((deckName) => deckName['name'].toString()).toList();
+
+    String dropdownValue = dropValues.first;
 
     void showBox() {
       showDialog(
@@ -103,14 +106,16 @@ class _MainPageState extends State<MainPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                DropdownMenu<dynamic>(
+                
+                DropdownMenu<String>(
+                  initialSelection: dropdownValue,
                   dropdownMenuEntries: dropValues
                       .map<DropdownMenuEntry<String>>((String values) {
                     return DropdownMenuEntry(value: values, label: values);
                   }).toList(),
                   onSelected: (index) {
                     setState(() {
-                      dropdownValues = index;
+                      dropdownValue = index!;
                     });
                   },
                 ),
@@ -119,13 +124,14 @@ class _MainPageState extends State<MainPage> {
                 ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        
-                        decks[0]['deck'].add(FlashCard(
+                        int selected = dropValues.indexOf(dropdownValue).abs();
+                        decks[selected]['deck'].add(FlashCard(
                             frontText: frontController.text,
                             backText: backController.text,
                             controller: flipControl));
                       });
                       print(decks[0]['deck']);
+                      print(decks[1]['deck']);
                     },
                     child: Icon(Icons.add)),
               ],
@@ -134,6 +140,9 @@ class _MainPageState extends State<MainPage> {
         ),
       );
     }
+
+    
+    
 
     return Scaffold(
       appBar: AppBar(
@@ -150,6 +159,7 @@ class _MainPageState extends State<MainPage> {
           SizedBox(
             height: 20,
           ),
+          
           Grid(
             deck_name: "Mathematics",
             name: decks[0]['name'],

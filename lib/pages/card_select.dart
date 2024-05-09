@@ -78,31 +78,92 @@ class _MainPageState extends State<MainPage> {
             controller: flipControl,
           ),
         ],
-      }
+      },
+//dsadadas
+      {
+        'name': 'English',
+        'deck': <FlashCard>[
+          FlashCard(
+            frontText: "1+0",
+            backText: "1",
+            controller: flipControl,
+          ),
+          FlashCard(
+            frontText: "1+1",
+            backText: "2",
+            controller: flipControl,
+          ),
+          FlashCard(
+            frontText: "2+1",
+            backText: "3",
+            controller: flipControl,
+          ),
+          FlashCard(
+            frontText: "3x3",
+            backText: "9",
+            controller: flipControl,
+          ),
+        ]
+      },
+      {
+        'name': 'Filipino',
+        'deck': <FlashCard>[
+          FlashCard(
+            frontText: "1+0",
+            backText: "1",
+            controller: flipControl,
+          ),
+          FlashCard(
+            frontText: "1+1",
+            backText: "2",
+            controller: flipControl,
+          ),
+          FlashCard(
+            frontText: "2+1",
+            backText: "3",
+            controller: flipControl,
+          ),
+          FlashCard(
+            frontText: "3x3",
+            backText: "9",
+            controller: flipControl,
+          ),
+        ]
+      },
     ];
     dropValues = decks.map((deckName) => deckName['name'].toString()).toList();
     dropdownValue = dropValues.first;
   }
 
-  
   void showBox() {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
+        title: Text("Add a Card"),
         content: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             TextField(
+              autofocus: true,
               controller: frontController,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(), label: Text('Front')),
+                  border: OutlineInputBorder(),
+                  label: Text(
+                    'Enter Question',
+                    style: TextStyle(color: Colors.grey.shade700),
+                  )),
             ),
             SizedBox(
-              height: 12,
+              height: 14,
             ),
             TextField(
               controller: backController,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(), label: Text('Back')),
+                  border: OutlineInputBorder(),
+                  label: Text(
+                    'Enter Answer',
+                    style: TextStyle(color: Colors.grey.shade700),
+                  )),
             )
           ],
         ),
@@ -125,19 +186,26 @@ class _MainPageState extends State<MainPage> {
 
               //Button to add card
               ElevatedButton(
+                  style: ButtonStyle(
+                      elevation: MaterialStatePropertyAll(2),
+                      shadowColor:
+                          MaterialStatePropertyAll(Colors.grey.shade800)),
                   onPressed: () {
-                    print(frontController.text);
                     setState(() {
                       int selected = dropValues.indexOf(dropdownValue).abs();
                       decks[selected]['deck'].add(FlashCard(
                           frontText: frontController.text,
                           backText: backController.text,
                           controller: flipControl));
+                      frontController.clear();
+                      backController.clear();
                     });
-                    print(decks[0]['deck']);
-                    print(decks[1]['deck']);
                   },
-                  child: Icon(Icons.add)),
+                  child: Text(
+                    "Done",
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.w500),
+                  )),
             ],
           )
         ],
@@ -162,7 +230,7 @@ class _MainPageState extends State<MainPage> {
           SizedBox(
             height: 20,
           ),
-          Grid(
+          Subj(
             deck_name: "Mathematics",
             name: decks[0]['name'],
             navigator: () => Navigator.push(
@@ -174,7 +242,7 @@ class _MainPageState extends State<MainPage> {
           SizedBox(
             height: 14,
           ),
-          Grid(
+          Subj(
             deck_name: "Science",
             name: decks[1]['name'],
             navigator: () {
@@ -186,11 +254,46 @@ class _MainPageState extends State<MainPage> {
               print(decks[1]['deck']);
             },
           ),
+          SizedBox(
+            height: 14,
+          ),
+          Subj(
+            deck_name: "English",
+            name: decks[1]['name'],
+            navigator: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(deck: decks[1]['deck']),
+                  ));
+              print(decks[1]['deck']);
+            },
+          ),
+          SizedBox(
+            height: 14,
+          ),
+          Subj(
+            deck_name: "Filipino",
+            name: decks[1]['name'],
+            navigator: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(deck: decks[1]['deck']),
+                  ));
+            },
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.grey.shade300,
+        elevation: 4,
+        hoverColor: Color.alphaBlend(Colors.grey.shade600, Colors.blue),
         onPressed: showBox,
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          color: Colors.black,
+        ),
       ),
     );
   }

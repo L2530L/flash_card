@@ -5,12 +5,16 @@ import 'package:flash_card/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class Grid extends StatelessWidget {
+class Subj extends StatelessWidget {
   final String name;
   final String deck_name;
   final void Function() navigator;
 
-  const Grid({super.key, required this.deck_name, required this.name, required this.navigator});
+  const Subj(
+      {super.key,
+      required this.deck_name,
+      required this.name,
+      required this.navigator});
 
   @override
   Widget build(BuildContext context) {
@@ -35,5 +39,3 @@ class Grid extends StatelessWidget {
     );
   }
 }
-
-

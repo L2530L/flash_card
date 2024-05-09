@@ -7,10 +7,10 @@ import 'package:flutter/widgets.dart';
 
 class Grid extends StatelessWidget {
   final String name;
-  final Widget Function(BuildContext) builder;
   final String deck_name;
+  final void Function() navigator;
 
-  const Grid({super.key, required this.builder, required this.deck_name, required this.name});
+  const Grid({super.key, required this.deck_name, required this.name, required this.navigator});
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +29,7 @@ class Grid extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: builder,
-                
-              ),
-            );
-          },
+          onTap: navigator,
         ),
       ),
     );

@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:ffi';
-
 import 'package:flash_card/components/grid.dart';
 import 'package:flash_card/pages/home.dart';
 import 'package:flip_card/flip_card.dart';
@@ -18,13 +16,19 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  @override
-  Widget build(BuildContext context) {
-    TextEditingController frontController = TextEditingController();
-    TextEditingController backController = TextEditingController();
+  late final TextEditingController frontController;
+  late final TextEditingController backController;
 
-    
-    List<Map<String, dynamic>> decks = [
+  late List<Map<String, dynamic>> decks = [];
+  late List<String> dropValues;
+  late String dropdownValue;
+
+  @override
+  void initState() {
+    super.initState();
+    frontController = TextEditingController();
+    backController = TextEditingController();
+    decks = [
       {
         'name': 'Math',
         'deck': <FlashCard>[
@@ -76,74 +80,73 @@ class _MainPageState extends State<MainPage> {
         ],
       }
     ];
-    List deck1 = decks[0]['deck'];
+    dropValues = decks.map((deckName) => deckName['name'].toString()).toList();
+    dropdownValue = dropValues.first;
+  }
 
-    List<String> dropValues =
-        decks.map((deckName) => deckName['name'].toString()).toList();
-
-    String dropdownValue = dropValues.first;
-
-    void showBox() {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          content: Column(
-            children: [
-              TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), label: Text('Front')),
-              ),
-              SizedBox(
-                height: 12,
-              ),
-              TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), label: Text('Back')),
-              )
-            ],
-          ),
-          actions: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                
-                DropdownMenu<String>(
-                  initialSelection: dropdownValue,
-                  dropdownMenuEntries: dropValues
-                      .map<DropdownMenuEntry<String>>((String values) {
-                    return DropdownMenuEntry(value: values, label: values);
-                  }).toList(),
-                  onSelected: (index) {
-                    setState(() {
-                      dropdownValue = index!;
-                    });
-                  },
-                ),
-
-                //Button to add card
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        int selected = dropValues.indexOf(dropdownValue).abs();
-                        decks[selected]['deck'].add(FlashCard(
-                            frontText: frontController.text,
-                            backText: backController.text,
-                            controller: flipControl));
-                      });
-                      print(decks[0]['deck']);
-                      print(decks[1]['deck']);
-                    },
-                    child: Icon(Icons.add)),
-              ],
+  
+  void showBox() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Column(
+          children: [
+            TextField(
+              controller: frontController,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(), label: Text('Front')),
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            TextField(
+              controller: backController,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(), label: Text('Back')),
             )
           ],
         ),
-      );
-    }
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              DropdownMenu<String>(
+                initialSelection: dropdownValue,
+                dropdownMenuEntries:
+                    dropValues.map<DropdownMenuEntry<String>>((String values) {
+                  return DropdownMenuEntry(value: values, label: values);
+                }).toList(),
+                onSelected: (index) {
+                  setState(() {
+                    dropdownValue = index!;
+                  });
+                },
+              ),
 
-    
-    
+              //Button to add card
+              ElevatedButton(
+                  onPressed: () {
+                    print(frontController.text);
+                    setState(() {
+                      int selected = dropValues.indexOf(dropdownValue).abs();
+                      decks[selected]['deck'].add(FlashCard(
+                          frontText: frontController.text,
+                          backText: backController.text,
+                          controller: flipControl));
+                    });
+                    print(decks[0]['deck']);
+                    print(decks[1]['deck']);
+                  },
+                  child: Icon(Icons.add)),
+            ],
+          )
+        ],
+      ),
+    );
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -159,13 +162,14 @@ class _MainPageState extends State<MainPage> {
           SizedBox(
             height: 20,
           ),
-          
           Grid(
             deck_name: "Mathematics",
             name: decks[0]['name'],
-            builder: (context) => HomePage(
-              deck: decks[0]['deck'],
-            ),
+            navigator: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomePage(deck: decks[0]['deck']),
+                )),
           ),
           SizedBox(
             height: 14,
@@ -173,9 +177,14 @@ class _MainPageState extends State<MainPage> {
           Grid(
             deck_name: "Science",
             name: decks[1]['name'],
-            builder: (context) => HomePage(
-              deck: decks[1]['deck'],
-            ),
+            navigator: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(deck: decks[1]['deck']),
+                  ));
+              print(decks[1]['deck']);
+            },
           ),
         ],
       ),

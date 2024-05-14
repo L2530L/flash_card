@@ -79,57 +79,6 @@ class _MainPageState extends State<MainPage> {
           ),
         ],
       },
-//dsadadas
-      {
-        'name': 'English',
-        'deck': <FlashCard>[
-          FlashCard(
-            frontText: "1+0",
-            backText: "1",
-            controller: flipControl,
-          ),
-          FlashCard(
-            frontText: "1+1",
-            backText: "2",
-            controller: flipControl,
-          ),
-          FlashCard(
-            frontText: "2+1",
-            backText: "3",
-            controller: flipControl,
-          ),
-          FlashCard(
-            frontText: "3x3",
-            backText: "9",
-            controller: flipControl,
-          ),
-        ]
-      },
-      {
-        'name': 'Filipino',
-        'deck': <FlashCard>[
-          FlashCard(
-            frontText: "1+0",
-            backText: "1",
-            controller: flipControl,
-          ),
-          FlashCard(
-            frontText: "1+1",
-            backText: "2",
-            controller: flipControl,
-          ),
-          FlashCard(
-            frontText: "2+1",
-            backText: "3",
-            controller: flipControl,
-          ),
-          FlashCard(
-            frontText: "3x3",
-            backText: "9",
-            controller: flipControl,
-          ),
-        ]
-      },
     ];
     dropValues = decks.map((deckName) => deckName['name'].toString()).toList();
     dropdownValue = dropValues.first;
@@ -256,32 +205,6 @@ class _MainPageState extends State<MainPage> {
           ),
           SizedBox(
             height: 14,
-          ),
-          Subj(
-            deck_name: "English",
-            name: decks[1]['name'],
-            navigator: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(deck: decks[1]['deck']),
-                  ));
-              print(decks[1]['deck']);
-            },
-          ),
-          SizedBox(
-            height: 14,
-          ),
-          Subj(
-            deck_name: "Filipino",
-            name: decks[1]['name'],
-            navigator: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(deck: decks[1]['deck']),
-                  ));
-            },
           ),
         ],
       ),

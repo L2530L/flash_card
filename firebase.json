@@ -1,1 +1,1 @@
-{"flutter":{"platforms":{"dart":{"lib/firebase_options.dart":{"projectId":"flash-card-b07be","configurations":{"web":"1:840138386306:web:6ac0702dac4d8ae78a7d9b"}}}}}}
+{"firestore":{"rules":"firestore.rules","indexes":"firestore.indexes.json"},"hosting":{"public":"build/web","ignore":["firebase.json","**/.*","**/node_modules/**"],"rewrites":[{"source":"**","destination":"/index.html"}]},"flutter":{"platforms":{"dart":{"lib/firebase_options.dart":{"projectId":"flash-card-ee582","configurations":{"web":"1:755830336083:web:2fa7d4d50c84ae840a74a6"}}}}}}

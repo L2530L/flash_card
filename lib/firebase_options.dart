@@ -53,11 +53,13 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDibnRFkHBcHbN0hWd5GbbgVV-7laeswkg',
-    appId: '1:840138386306:web:6ac0702dac4d8ae78a7d9b',
-    messagingSenderId: '840138386306',
-    projectId: 'flash-card-b07be',
-    authDomain: 'flash-card-b07be.firebaseapp.com',
-    storageBucket: 'flash-card-b07be.appspot.com',
+    apiKey: 'AIzaSyB1kjcsWq4j7tzNF_J4GfXjaImxr3hvVr8',
+    appId: '1:755830336083:web:2fa7d4d50c84ae840a74a6',
+    messagingSenderId: '755830336083',
+    projectId: 'flash-card-ee582',
+    authDomain: 'flash-card-ee582.firebaseapp.com',
+    storageBucket: 'flash-card-ee582.firebasestorage.app',
+    measurementId: 'G-JPLG64JJJZ',
   );
+
 }
